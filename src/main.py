@@ -1,11 +1,16 @@
 from textnode import *
 from folder_file_operations import *
 from generate_pages_recursive import *
+import sys
 
 def main():
-    print("TextNode(")
-    copy_directory_contents("static", "public")
-    print("Static files copied successfully!")
-    generate_pages_recursive("content", "template.html", "public")
+	copy_directory_contents("static", "docs")
+	print("Static files copied successfully!")
+	basepath = '/'
+	if len(sys.argv) > 1:
+		basepath = sys.argv[1]
+	generate_pages_recursive("content", "template.html", "docs", basepath)
+
+
 
 main()
